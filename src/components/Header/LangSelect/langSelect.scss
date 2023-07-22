@@ -1,0 +1,24 @@
+@import "../../../scss/variables";
+.LangSelect {
+  list-style: none;
+  padding: 0;
+  font-size: 1.2rem;
+  max-width: 400px;
+  z-index: 100;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background-color: $c-secondary;
+
+  li {
+    padding: 10px 3px;
+    border-bottom: solid 1px grey;
+    max-width: 400px;
+    background-color: $c-secondary;
+    &:hover {
+      cursor: pointer;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  background: $c-secondary-l;
+  color: $c-body;
+  margin: 0;
+
+  @media (max-width: $md-width) {
+  }
+
+  @media (max-width: $sm-width) {
+    font-size: 12px;
+  }
+}

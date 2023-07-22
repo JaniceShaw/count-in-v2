@@ -1,0 +1,12 @@
+@import "./scss/variables";
+.App {
+  .container {
+    background: $c-secondary-l;
+    margin: 0 auto;
+
+    max-width: 980px;
+    @media (max-width: $sm-width) {
+      margin: 0px;
+    }
+  }
+}

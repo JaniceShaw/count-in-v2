@@ -1,0 +1,112 @@
+@import "../../../scss/variables";
+/* 
+// == Display of the numbers == // */
+.numbers-display {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+  /* //max-width: 700px; */
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+  background-color: $c-secondary;
+
+  @media (max-width: $md-width) {
+    max-width: 350px;
+  }
+
+  @media (max-width: $sm-width) {
+    max-width: $sm-num;
+  }
+
+  li {
+    border-radius: 5px;
+    /* //color: $c-body; */
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 54px;
+    margin: 5px;
+
+    @media (max-width: $sm-width) {
+      width: 54px;
+      height: 54px;
+      line-height: 47px;
+      margin: 5px 2px;
+      //font-size: 1rem;
+    }
+  }
+
+  .num {
+    border: 3px solid $c-buttons;
+    transition-duration: 0.6s;
+    transition-property: transform;
+    user-select: none;
+
+    &:hover {
+      border: 3px solid $pink;
+      color: $white;
+    }
+
+    &.correct {
+      background: #202021;
+      border-color: $c-correct;
+      transform: rotate(360deg);
+    }
+
+    &:active,
+    &:focus {
+      border: 3px solid $c-body;
+      color: $white;
+    }
+  } // end .num
+
+  /* //Transitions */
+  li.sn-appear {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    transform: scaleY(0) rotate(-180deg);
+  }
+
+  li.sn-appear-active {
+    opacity: 1;
+    transform: scaleY(1) rotate(0deg);
+  }
+
+  li.sn-enter {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    transform: scaleY(0) rotate(-180deg);
+  }
+
+  li.sn-enter-active {
+    opacity: 1;
+    transform: scaleY(1) rotate(0deg);
+  }
+
+  li.sn-leave {
+    transition-property: opacity, transform;
+    transition-duration: 0.6s;
+    opacity: 1;
+    transition-timing-function: ease-in-out;
+    transform: scaleY(1) rotate(-0deg);
+  }
+  li.sn-leave-active {
+    opacity: 0;
+    transform: scaleY(0) rotate(-180deg);
+  }
+}
+
+/* // @supports (display: grid) {
+// } */
+
+/* // == END Display of the numbers == // */

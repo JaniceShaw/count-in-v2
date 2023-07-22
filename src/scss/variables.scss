@@ -1,0 +1,21 @@
+//colours
+$c-primary: #77c4d5;
+$c-primary-d: darken($c-primary, 30%);
+//$c-buttons: darken($c-primary, 26%);
+$c-buttons: #77c4d5;
+$c-secondary: #1e2424;
+$c-secondary-l: lighten($c-secondary, 3%);
+$c-body: lightblue;
+$pink: hotpink;
+$white: #fff;
+$c-correct: lightgreen;
+$c-incorrect: #ff4352;
+
+$c-play: #28a745;
+$c-stop: #dc3545;
+$c-repeat: #ffc107;
+
+//break points
+$md-width: 754px;
+$sm-width: 404px;
+$sm-num: 305;

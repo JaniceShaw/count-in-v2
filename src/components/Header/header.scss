@@ -1,0 +1,64 @@
+@import "../../scss/variables";
+
+.Header {
+  position: relative;
+  text-align: center;
+  background: $c-secondary-l;
+
+  @media (max-width: $md-width) {
+  }
+
+  h1 {
+    margin: 0;
+    padding: 30px 0 0 0;
+    font-size: 2.4rem;
+    background: rgba(147, 206, 222, 1);
+    background: linear-gradient(
+      to right,
+      rgba(147, 206, 222, 1) 0%,
+      rgba(117, 189, 209, 1) 41%,
+      rgba(91, 190, 194, 1) 58%,
+      rgba(74, 191, 185, 1) 69%,
+      rgb(73, 165, 191) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+    color: $c-secondary;
+    // margin: -20px 0 10px;
+    //padding: 46px 0 5px 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: ivory;
+    margin: 0;
+    padding: 10px 0 30px 0;
+    font-weight: normal;
+    background-color: $c-secondary;
+  }
+
+  .in {
+    color: ivory;
+    font-weight: normal;
+  }
+
+  .selLang {
+    display: inline-block;
+
+    &:hover {
+      cursor: pointer;
+      .langEng {
+        color: ivory;
+      }
+      .langNativ {
+        color: #77c4d5;
+      }
+    }
+    .langEng {
+      color: #77c4d5;
+    }
+
+    .langNativ {
+      color: ivory;
+    }
+  }
+}
