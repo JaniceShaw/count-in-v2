@@ -1,7 +1,7 @@
 import React from 'react';
 
-// import '../Numbers.scss';
-//import './numbersDisplay.scss';
+import '../Numbers.scss';
+//import '../numbersDisplay.scss';
 
 export const MaxControls = (props) => {
     let style = '';
