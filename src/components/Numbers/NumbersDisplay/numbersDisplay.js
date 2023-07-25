@@ -4,7 +4,7 @@ import './numbersDisplay.scss';
 
 export const NumbersDisplay = ({ theNum, onNumClick, numClass }) => {
 
- // console.log('thenum', theNum);
+ console.log('thenum', theNum);
 
   return (
 

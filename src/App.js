@@ -14,11 +14,8 @@ import Learn from './components/Numbers/Learn/Learn';
 let correctAdd = [];
 let incorrectAdd = [];
 let resultAdd = [];
-
 //let theNum = [];
-
 let i;
-
 // console.log('numberlist', numbersList);
 
 const languageList = [
@@ -60,7 +57,7 @@ const App = () => {
 
   //set up states -- not all need to be state 
   const [showLangs, setShowLangs] = useState(false); // hide lang list selection
-  const [langs, setLangs] = useState(); // the array of languages to select
+  const [langs, setLangs] = useState(); // the array of languages to select -- TODO: maybe not needed
   const [langSelected, setLangSelected] = useState(6); // sets default language
   const [lang, setLang] = useState("de-DE");
   const [learnList] = useState([[1, 'num']]);
@@ -70,7 +67,6 @@ const App = () => {
 
   // for Time challenge
   const [challenge, setChallenge] = useState(false); // sets challenge to not started
-
   const [finished] = useState(false);
   const [results] = useState([]);
   const [running] = useState(false);
@@ -82,8 +78,7 @@ const App = () => {
   const [incorrectQ] = useState([]);
 
   useEffect(() => {
-    console.log('in useeffect for get voice');
-
+   // console.log('in useeffect for get voice');
     let voicesAll = speechSynthesis.getVoices();
 
    // need time out to work consistently in chrome
@@ -96,7 +91,6 @@ const App = () => {
       //unfortunately we have to check for duplicates
       voicesAll.forEach(function (obj) {
         const uri = obj.voiceURI;
-
         //if voiceuri is not in obj.voiceuri then push to array vuris-- makes a list of unique voiceURI's 
         if (!vuris.includes(uri)) {
 
@@ -108,18 +102,14 @@ const App = () => {
         }
       });
 
-      console.log('get the voice', voices[0]);
+     // console.log('get the voice', voices[0]);
       if (!voices[0]) {
-        console.log('did not get it need run again');
+        console.log('did not get the voices');
       }
 
       setGermanVoice(voices[0]);
 
     }, 250);
-
-
-
-
   }, []);
 
   // make speak
@@ -142,7 +132,7 @@ const App = () => {
   }
 
   function shutUp() {
-    console.log('did shut up');
+   //console.log('did shut up');
     speech.cancel()
   }
 
@@ -167,10 +157,11 @@ const App = () => {
 
 
   // Numbers Changed //
-  //Max minus
+  //Max minus -- start number  - --
   const maxMinusClickedHandler = () => {
+    console.log('numbers -');
 
-    let newNumbersList = numbersList;
+    let newNumbersList = [...numbersList];
     const startNum = newNumbersList[0][0];
     if (startNum > 1) {
 
@@ -182,13 +173,16 @@ const App = () => {
         newNumbersList.unshift([i, 'num']);
       }
 
-      setNumberList(newNumbersList)
+      setNumberList((prevState)=>{
+        return(newNumbersList);
+      })
     }
   }
 
-  //Max plus
+  //Max plus -- start numer + ---
   const maxPlusClickedHandler = () => {
-    let newNumbersList = numbersList;
+
+    let newNumbersList = [...numbersList];
     const numEnd = newNumbersList.length;
     const endNumber = newNumbersList[numEnd - 1][0];
 
@@ -200,38 +194,46 @@ const App = () => {
       newNumbersList.shift();
     }
 
-    setNumberList(newNumbersList)
+    setNumberList((prevState)=>{
+      return(newNumbersList);
+    })
 
   }
 
   // Row minus
   const minMinusClickedHandler = () => {
-    let newNumbersList = numbersList;
+   
+    let newNumbersList = [...numbersList];
     const numEnd = newNumbersList[newNumbersList.length - 1][0] - 10;
     //remove last 10 items
     if (numEnd >= 10) {
       for (i = 1; i <= 10; i++) {
         newNumbersList.pop();
       }
-      // this.setState({
-      //   numbersList: newNumbersList
-      // })
-      setNumberList(newNumbersList)
+      setNumberList((prevState)=>{
+        return(newNumbersList);
+      })
     }
   }
 
   //Row plus
   const minPlusClickedHandler = () => {
-    let newNumbersList = numbersList;
+
+    let newNumbersList = [...numbersList];
+    console.log('1-newNumbersList',newNumbersList)
+
     const numStart = newNumbersList[newNumbersList.length - 1][0] + 1;
 
-    for (i = numStart; i < numStart + 10; i++) {
+    console.log('numStart', numStart);
+
+    for (let i = numStart; i < numStart + 10; i++) {
       newNumbersList.push([i, 'num']);
     }
-    // this.setState({
-    //   numbersList: newNumbersList
-    // })
-    setNumberList(newNumbersList)
+    console.log('newnum', newNumbersList);
+
+    setNumberList((prevState)=>{
+      return(newNumbersList);
+    })
 
   };
 
@@ -451,7 +453,6 @@ const App = () => {
             {showTest2} */}
 
       </div>
-
     </div>
   );
 

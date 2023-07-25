@@ -10,12 +10,12 @@ export const Numbers = (props) => {
 
     return (
         <div className='Numbers'>
-            {/* <RowsControls
+            <RowsControls
                 onClickMinMinus={props.onClickMinMinus}
                 onClickMinPlus={props.onClickMinPlus}
                 numbersList={props.theNum}
                 challengeStart={props.challengeStart}
-            /> */}
+            />
 
             <NumbersDisplay
                 theNum={props.theNum}
@@ -23,12 +23,12 @@ export const Numbers = (props) => {
                 numClass={props.numClass}
             />
 
-            {/* <MaxControls
+            <MaxControls
                 onClickMaxMinus={props.onClickMaxMinus}
                 onClickMaxPlus={props.onClickMaxPlus}
                 numbersList={props.theNum}
                 challengeStart={props.challengeStart}
-            /> */}
+            />
         </div>
     );
 }
