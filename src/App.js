@@ -81,53 +81,70 @@ const App = () => {
   const [incorrect] = useState([]); // array for incorrect answers
   const [incorrectQ] = useState([]);
 
-  useEffect(()=>{
-    const voicesAll = speechSynthesis.getVoices();
-    const vuris = [];
-    const voices = [];
-  
-    //unfortunately we have to check for duplicates
-    voicesAll.forEach(function (obj) {
-      const uri = obj.voiceURI;
-  
-      //if voiceuri is not in obj.voiceuri then push to array vuris-- makes a list of unique voiceURI's 
-      if (!vuris.includes(uri)) {
-  
-        vuris.push(uri);
-        // get list of only german voices not including Anna (she is strange!)
-        if (obj.lang === 'de-DE' && obj.name !== "Anna") {
+  useEffect(() => {
+    console.log('in useeffect for get voice');
+
+    let voicesAll = speechSynthesis.getVoices();
+
+   // need time out to work consistently in chrome
+    setTimeout(() => {
+      voicesAll = speechSynthesis.getVoices();
+      //console.log('in tiem out', voicesAll);
+      const vuris = [];
+      const voices = [];
+
+      //unfortunately we have to check for duplicates
+      voicesAll.forEach(function (obj) {
+        const uri = obj.voiceURI;
+
+        //if voiceuri is not in obj.voiceuri then push to array vuris-- makes a list of unique voiceURI's 
+        if (!vuris.includes(uri)) {
+
+          vuris.push(uri);
+          // get list of only german voices not including Anna (she is strange!)
+          if (obj.lang === 'de-DE' && obj.name !== "Anna" && obj.name !== "Sandy") {
             voices.push(obj);
+          }
         }
+      });
+
+      console.log('get the voice', voices[0]);
+      if (!voices[0]) {
+        console.log('did not get it need run again');
       }
-    });
-  
-   setGermanVoice(voices[0]);
 
-  },[germanVoice,setGermanVoice]);
+      setGermanVoice(voices[0]);
 
+    }, 250);
+
+
+
+
+  }, []);
 
   // make speak
-const speech = window.speechSynthesis;
-let to_speak;
+  const speech = window.speechSynthesis;
+  let to_speak;
 
-function speakDe(say, lang) {
+  function speakDe(say, lang) {
 
-  shutUp();
+    shutUp();
 
-  to_speak = new SpeechSynthesisUtterance(say);
-  to_speak.lang = lang;
-  // default german voice anna not working need to change to an alternative german voice
-  if (lang === 'de-DE') {
-   to_speak.voice = germanVoice;
+    to_speak = new SpeechSynthesisUtterance(say);
+    to_speak.lang = lang;
+    // default german voice anna not working need to change to an alternative german voice
+    if (lang === 'de-DE') {
+      to_speak.voice = germanVoice;
+    }
+
+    to_speak.rate = 0.9;
+    speech.speak(to_speak)
   }
 
-  to_speak.rate = 0.9;
-  speech.speak(to_speak)
-}
-
-function shutUp() {
-  speech.cancel()
-}
+  function shutUp() {
+    console.log('did shut up');
+    speech.cancel()
+  }
 
   // open lang selector //
   const openLangsHandler = () => {
