@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Buttons = ({toShow,onClick}) => {
+export const Buttons = ({ toShow, onClick }) => {
   if (toShow === true) {
     return (
       <div>

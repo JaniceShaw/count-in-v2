@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import './App.scss';
-// import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+
+import Menu from './components/menu/Menu';
 
 import { Header } from './components/Header/header';
 import { Numbers } from './components/Numbers/Numbers';
@@ -9,6 +10,7 @@ import { PracticeBlock } from './components/PracticeBlock/PracticeBlock';
 import { ChallengeBlock } from './components/ChallengeBlock/ChallengeBlock';
 
 import Learn from './components/Numbers/Learn/Learn';
+
 
 // global arrays
 let correctAdd = [];
@@ -26,6 +28,7 @@ const languageList = [
   ['French', 'fr-FR', 'français', 'incorrect'],
   ['French (CA)', 'fr-CA', 'français', 'incorrect'],
   ['German', 'de-DE', 'deutsch', 'falsch'],
+  // ['German (CH)', 'de-CH', 'deutsch', 'falsch'],
   ['Hebrew', 'he-IL', 'עִברִית', 'לֹא נָכוֹן'],
   ['Italian', 'it-IT', 'italiano', 'scorretto'],
   ['Japanese', 'ja-JP', '日本語', '間違った'],
@@ -40,7 +43,7 @@ const languageList = [
   ['Thai', 'th-TH', 'ไทย', 'ไม่ถูกต้อง']
 ];
 
-// function speakDeAll(say, lang) {
+// function runSpeakAll(say, lang) {
 //   to_speak = new SpeechSynthesisUtterance(say);
 //   to_speak.lang = lang;
 //   to_speak.rate = 0.9;
@@ -48,40 +51,51 @@ const languageList = [
 // }
 
 const App = () => {
-  let defaultNumbersList = [];
-  let j;
-  // the displayed numbers --Default
-  for (j = 1; j <= 10; j++) {
-    defaultNumbersList.push([j, 'num']);
+
+  function defaultNumbersList() {
+    let numberList = [];
+
+    for (let j = 1; j <= 10; j++) {
+      numberList.push([j, 'num']);
+    }
+    return numberList
   }
+
 
   //set up states -- not all need to be state 
   const [showLangs, setShowLangs] = useState(false); // hide lang list selection
-  const [langs, setLangs] = useState(); // the array of languages to select -- TODO: maybe not needed
-  const [langSelected, setLangSelected] = useState(6); // sets default language
-  const [lang, setLang] = useState("de-DE");
+  // do i need both of these??
+  const [langSelected, setLangSelected] = useState(6); // The selected language (German default)
+  const [lang, setLang] = useState("de-DE"); // is this not the same as above??
+  const [germanVoice, setGermanVoice] = useState();
+  //const [langs, setLangs] = useState(); // the array of languages to select -- TODO: maybe not needed
   const [learnList] = useState([[1, 'num']]);
   const [numbersList, setNumberList] = useState(defaultNumbersList);
-  const [test, setTest] = useState(false); // to show if practice has been clicked
-  const [germanVoice, setGermanVoice] = useState();
+  //const [test, setTest] = useState(false); // to show if practice has been clicked
+  const [practice, setPractice] = useState(false); // to show if practice has been clicked
+
 
   // for Time challenge
   const [challenge, setChallenge] = useState(false); // sets challenge to not started
-  const [finished] = useState(false);
-  const [results] = useState([]);
-  const [running] = useState(false);
-  const [elapsedTime] = useState(0);
-  const [previousTime] = useState(0);
-  const [rand] = useState(''); // the random number said
-  const [correct] = useState([]); // #endregion//array for correct answers
-  const [incorrect] = useState([]); // array for incorrect answers
-  const [incorrectQ] = useState([]);
+  const [finished, setFinished] = useState(false);
+  const [results, setResults] = useState([]);
+  const [running, setRunning] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [previousTime, setPreviousTime] = useState(0);
+  const [rand, setRand] = useState(''); // the random number said
+  const [correct, setCorrect] = useState([]); // #endregion//array for correct answers
+  const [incorrect, setIncorrect] = useState([]); // array for incorrect answers
+
+  const [incorrectChallenge, setIncorrectChallenge] = useState([]);
+  const [theTime, setTheTime] = useState();
 
   useEffect(() => {
-   // console.log('in useeffect for get voice');
+    // console.log('in useeffect for get voice');
     let voicesAll = speechSynthesis.getVoices();
 
-   // need time out to work consistently in chrome
+    // console.log(voicesAll);
+
+    // need time out to work consistently in chrome
     setTimeout(() => {
       voicesAll = speechSynthesis.getVoices();
       //console.log('in tiem out', voicesAll);
@@ -102,7 +116,7 @@ const App = () => {
         }
       });
 
-     // console.log('get the voice', voices[0]);
+      // console.log('get the voice', voices[0]);
       if (!voices[0]) {
         console.log('did not get the voices');
       }
@@ -116,7 +130,7 @@ const App = () => {
   const speech = window.speechSynthesis;
   let to_speak;
 
-  function speakDe(say, lang) {
+  function runSpeak(say, lang) {
 
     shutUp();
 
@@ -132,7 +146,7 @@ const App = () => {
   }
 
   function shutUp() {
-   //console.log('did shut up');
+    //console.log('did shut up');
     speech.cancel()
   }
 
@@ -148,13 +162,11 @@ const App = () => {
 
     const newLang = languageList[newLangSelected][1];
 
-    speakDe(languageList[newLangSelected][2], newLang);
+    runSpeak(languageList[newLangSelected][2], newLang);
     setLang(newLang);
     setLangSelected(newLangSelected);
     setShowLangs(false)
   }
-
-
 
   // Numbers Changed //
   //Max minus -- start number  - --
@@ -173,8 +185,8 @@ const App = () => {
         newNumbersList.unshift([i, 'num']);
       }
 
-      setNumberList((prevState)=>{
-        return(newNumbersList);
+      setNumberList((prevState) => {
+        return (newNumbersList);
       })
     }
   }
@@ -194,15 +206,15 @@ const App = () => {
       newNumbersList.shift();
     }
 
-    setNumberList((prevState)=>{
-      return(newNumbersList);
+    setNumberList((prevState) => {
+      return (newNumbersList);
     })
 
   }
 
   // Row minus
   const minMinusClickedHandler = () => {
-   
+
     let newNumbersList = [...numbersList];
     const numEnd = newNumbersList[newNumbersList.length - 1][0] - 10;
     //remove last 10 items
@@ -210,8 +222,8 @@ const App = () => {
       for (i = 1; i <= 10; i++) {
         newNumbersList.pop();
       }
-      setNumberList((prevState)=>{
-        return(newNumbersList);
+      setNumberList((prevState) => {
+        return (newNumbersList);
       })
     }
   }
@@ -220,7 +232,7 @@ const App = () => {
   const minPlusClickedHandler = () => {
 
     let newNumbersList = [...numbersList];
-    console.log('1-newNumbersList',newNumbersList)
+    console.log('1-newNumbersList', newNumbersList)
 
     const numStart = newNumbersList[newNumbersList.length - 1][0] + 1;
 
@@ -231,8 +243,8 @@ const App = () => {
     }
     console.log('newnum', newNumbersList);
 
-    setNumberList((prevState)=>{
-      return(newNumbersList);
+    setNumberList((prevState) => {
+      return (newNumbersList);
     })
 
   };
@@ -240,28 +252,46 @@ const App = () => {
   //number clicked
   const handleNumberClick = (e) => {
 
-    const clicked = Number(e.currentTarget.textContent);
-    // console.log('clicked', clicked);
+    const clicked = Number(e.target.textContent);
 
-    let rand = numbersList[Math.floor((Math.random() * numbersList.length))][0];
+    // Check if practice mode is on //
+    if (practice) {
 
-    let theNum = numbersList;
+      if (rand === clicked) {
+        //console.log('got it right')
+        const newRandomNumber = numbersList[Math.floor((Math.random() * numbersList.length))][0];
+        setRand(newRandomNumber);
+        runSpeak(newRandomNumber, lang);
+        setCorrect((prevState => {
+          return [...prevState, rand]
+        }))
+      } else {
+        setIncorrect((prevState) => [...prevState, rand]);
+      }
+      return
+    }
+
+    // check if challenge mode is on
+    if (challenge) {
+      console.log("started chalange!")
+      //correct number clicked
+      if (rand === clicked) {
+        console.log('Got it right!')
+      }
+
+      return
+    }
+
+    // let rand = numbersList[Math.floor((Math.random() * numbersList.length))][0];
+
+    let theNum = [...numbersList];
     let theNewNum = [];
     let numClassC = 'num correct';
 
     // this.setState({ clicked: clicked });
-
     // console.log('clicked', clicked, lang);
-    speakDe(clicked, lang);
+    runSpeak(clicked, lang);
 
-    //practice is correct
-    //   if (clicked === this.state.rand && this.state.test) {
-
-    //     correctAdd.push(this.state.rand);
-    //     this.setState({ correct: correctAdd, rand: rand });
-
-    //     speakDe(clicked, lang);
-    //     speakDe(rand, lang);
 
     //     //Challenge is correct
     //   } else if (clicked === this.state.rand && this.state.challenge) {
@@ -305,84 +335,81 @@ const App = () => {
     //       this.setState({ challenge: false, running: false, finished: true, results: resultAdd });
     //       incorrectAdd = [];
     //     } else {
-    //       speakDe(rand2, lang);
+    //       runSpeak(rand2, lang);
     //     }
 
     //     //challenge incorrect
-    //   } else if (this.state.test) {
+    //   } else if (practice) {
     //     incorrectAdd.push(this.state.rand);
     //     this.setState({ incorrect: incorrectAdd, rand: rand });
-    //     //  speakDe(clicked+"  "+rand, lang);
-    //     speakDe(clicked, lang);
-    //     speakDeAll(rand, lang);
+    //     //  runSpeak(clicked+"  "+rand, lang);
+    //     runSpeak(clicked, lang);
+    //     runSpeakAll(rand, lang);
 
     //     //challenge incorrect
     //   } else if (this.state.challenge) {
     //     incorrectAdd.push(this.state.rand);
     //     this.setState({ incorrectQ: incorrectAdd, rand: rand });
-    //     speakDe(this.state.langs[this.state.langSelected][3], lang);
-    //     speakDeAll(rand, lang);
+    //     runSpeak(this.state.langs[this.state.langSelected][3], lang);
+    //     runSpeakAll(rand, lang);
     //   } else {
-    //     speakDe(clicked, lang);
+    //     runSpeak(clicked, lang);
     //   }
   }
 
-  //start practice button
+
+
+  // //start practice button
   const handleButtonClick = (e) => {
 
-    let lang = this.state.lang;
-    let rand = this.state.numbersList[Math.floor((Math.random() * this.state.numbersList.length))][0];
+    //let lang = this.state.lang;
+    let randomNumber = numbersList[Math.floor((Math.random() * numbersList.length))][0];
+    console.log('randnum', randomNumber)
     let theNewNum = [];
-    let nStart = this.state.numbersList[0][0];
-    let nEnd = this.state.numbersList[this.state.numbersList.length - 1][0];
-    console.log(nStart, nEnd);
+    let nStart = numbersList[0][0];
+    let nEnd = numbersList[numbersList.length - 1][0];
+    console.log(nStart, nEnd,);
 
     for (i = nStart; i <= nEnd; i++) {
       theNewNum.push([i, 'num']);
     }
-    this.setState({
-      numbersList: theNewNum
-    });
+    console.log('newNum', theNewNum);
+
+    setNumberList((prevState) => { return theNewNum }) // now sure why this is happening
 
     // starts practice, resets correct and incorrect arrays
-    if (this.state.test !== true) {
+    if (!practice) {
+      console.log('practice false')
 
-      this.setState({
-        rand: rand,
-        test: true,
-        incorrect: [],
-        correct: [],
-        numberList: theNewNum
-      });
+      setRand(randomNumber);
+      setPractice(true);
+      if (incorrect.length > 0) { setIncorrect(() => []) }
+      if (correct.length > 0) { setCorrect(() => []) }
 
-      speakDe(rand, lang);
+      runSpeak(randomNumber, lang);
       // stops test, resets correctAdd and incorrectAdd arrays
     } else {
-      if (e.currentTarget.textContent === "Stop") {
-        this.setState({ test: false });
-        correctAdd = [];
-        incorrectAdd = [];
+      if (e.target.textContent === "Stop") {
+        setPractice(false);
+
         // replays number said
       } else {
-
-        speakDe(this.state.rand, lang);
-
+        runSpeak(rand, lang);
       }
 
     }
   }
   //start challenge button
   const handleQuizButtonClick = (e) => {
-    let lang = this.state.lang;
-    let rand = this.state.numbersList[Math.floor((Math.random() * this.state.numbersList.length))][0];
+    let newRand = numbersList[Math.floor((Math.random() * numbersList.length))][0];
     //resets numbers to remove correct class
     let theNewNum = [];
     // for (i = this.state.from; i <= this.state.to; i++) {
     //   theNewNum.push([i, 'num']);
     // }
 
-    let nStart = this.state.numbersList[0][0];
-    let nEnd = this.state.numbersList[this.state.numbersList.length - 1][0];
+    let nStart = numbersList[0][0];
+    let nEnd = numbersList[numbersList.length - 1][0];
     console.log(nStart, nEnd);
 
     for (i = nStart; i <= nEnd; i++) {
@@ -390,27 +417,31 @@ const App = () => {
     }
     console.log('hh', theNewNum);
     // starts challenge,
-    if (this.state.challenge !== true) {
-      this.setState({
-        rand: rand,
-        challenge: true,
-        finished: false,
-        incorrectQ: [],
-        elapsedTime: 0,
-        running: true,
-        previousTime: Date.now(),
-        numbersList: theNewNum
-      });
-      speakDe(rand, lang);
+    if (!challenge) {
+
+      setRand(newRand);
+      setChallenge(true);
+      setFinished(false);
+      setIncorrectChallenge(() => []);
+      setElapsedTime(0);
+      setRunning(true);
+      setPreviousTime(Date.now());
+      setNumberList(() => theNewNum)
+
+      runSpeak(newRand, lang);
 
       // stops challenge, resets incorrectAdd arrays
     } else {
-      if (e.currentTarget.textContent === "Stop") {
-        this.setState({ challenge: false, running: false });
-        incorrectAdd = [];
+      if (e.target.textContent === "Stop") {
+        setChallenge(false);
+        setRunning(false);
+
+        // incorrectAdd = [] // what is that??
+        //this.setState({ challenge: false, running: false });
+        // incorrectAdd = []; 
         // replays number said
       } else {
-        speakDe(this.state.rand, lang);
+        runSpeak(rand, lang);
       }
     }
   }
@@ -418,6 +449,8 @@ const App = () => {
 
   return (
     <div className="App">
+
+      <Menu />
 
       <Header
         langSelected={langSelected}
@@ -441,18 +474,34 @@ const App = () => {
         />
 
         {/* <Learn
-            learnList={this.state.learnList}
-            onClick={this.handleClick}
-          />
-           */}
-        {/* <div className="container"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi velit quia molestiae sint dolorem eos culpa aperiam sit porro perferendis. Aut corrupti id minus laudantium aspernatur facilis dolorum distinctio esse.</p></div> */}
+          learnList={learnList}
+        //onClick={handleClick}
+        /> */}
 
 
-        {/* {showTest}  was commented*/}
+        {/* {showTest}  was commented */}
         {/* {showQuiz}
             {showTest2} */}
 
       </div>
+      <PracticeBlock
+        toShow={practice}
+        onClick={handleButtonClick}
+        correct={correct}
+        incorrect={incorrect}
+      />
+
+      <ChallengeBlock
+        toShow={challenge}
+        onClick={handleQuizButtonClick}
+        incorrect={incorrectChallenge}
+        timer={theTime}
+
+        finished={finished}
+        results={results}
+
+      />
+
     </div>
   );
 
@@ -541,13 +590,13 @@ const App = () => {
 
   // if (this.state.challenge !== true && this.state.finished === false) {
   //   showTest = <PracticeBlock
-  //     toShow={this.state.test}
+  //     toShow={practice}
   //     onClick={this.handleButtonClick}
   //     correct={correct}
   //     incorrect={incorrect}
   //   />
   // }
-  // if (this.state.test !== true) {
+  // if (practice !== true) {
   //   showQuiz = <ChallengeBlock
   //     toShow={this.state.challenge}
   //     onClick={this.handleQuizButtonClick}
@@ -560,7 +609,7 @@ const App = () => {
   // }
   // if (this.state.finished === true) {
   //   showTest2 = <PracticeBlock
-  //     toShow={this.state.test}
+  //     toShow={practice}
   //     onClick={this.handleButtonClick}
   //     correct={correct}
   //     incorrect={incorrect}

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './PracticeFeedback.module.css';
 
 function T1(props) {
   if (Number(props.correct) !== 0) { //TODO: need to change as number can be 0
@@ -15,6 +16,8 @@ function T1(props) {
 };
 
 function T2(props) {
+  console.log('inT2');
+  console.log(props.incorrect)
   if (Number(props.incorrect) !== 0) {
     return (
       <span>
@@ -28,14 +31,13 @@ function T2(props) {
   }
 };
 
-export const PracticeFeedback = (props) => {
-  var correct = props.correct;
-  var incorrect = props.incorrect;
+export const PracticeFeedback = ({ correct, incorrect }) => {
+  console.log('hello in feedback')
 
   return (
-    <div className="practice-feedback">
+    <div className={styles['practice-feedback']}>
 
-      <T1 correct={props.correct} />
+      <T1 correct={correct} />
       <ul className="practice-feedback-correct">
         {correct.map((correct, index) => <li key={index}>{correct}</li>)}
       </ul>
