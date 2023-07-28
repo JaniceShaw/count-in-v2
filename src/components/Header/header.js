@@ -2,19 +2,19 @@ import React from 'react';
 import './header.scss';
 import { LangSelect } from './LangSelect/langSelect';
 
-export const Header = ({ langSelected, langs, langShowClick, showLangs, langOnClick }) => {
+const Header = ({ langSelected, languageList, onOpenLangsClick, showLangs, langOnClick }) => {
 
   return (
-    <header className='Header'>
+    <header className='header'>
       <h1>Count <span className='in'>In</span></h1>
       <h2>
-        <span className='selLang' onClick={langShowClick}>
-          <span className='langEng'>{langs[langSelected][0]}</span> / <span className='langNativ'>{langs[langSelected][2]}</span>
+        <span className='selLang' onClick={onOpenLangsClick}>
+          <span className='langEng'>{languageList[langSelected].enName}</span> / <span className='langNativ'>{languageList[langSelected].name}</span>
         </span>
       </h2>
       {showLangs &&
         <LangSelect
-          langs={langs}
+          languageList={languageList}
           // selectedLang={langSelected}
           langOnClick={langOnClick}
         />
@@ -23,3 +23,4 @@ export const Header = ({ langSelected, langs, langShowClick, showLangs, langOnCl
     </header >
   );
 }
+export default Header;

@@ -1,0 +1,32 @@
+.stop {
+  background-color: red;
+  border: 1px solid #d60d1d;
+}
+.stop:hover,
+.stop:active {
+  background: #ac0e1e;
+  border-color: #ac0e1e;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+}
+
+.repeat {
+  background: orange;
+  border: 1px solid orange;
+}
+.repeat:hover,
+.repeat:active {
+  background: rgb(160, 109, 15);
+  border-color: rgb(160, 109, 15);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+}
+
+.play {
+  background: green;
+  border: 1px solid green;
+}
+.play:hover,
+.play:active {
+  background: rgb(11, 99, 11);
+  border-color: rgb(11, 99, 11);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+}

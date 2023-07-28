@@ -3,7 +3,7 @@ import { Buttons } from '../Buttons/buttons';
 import { ChallengeFeedback } from './ChallengeFeedback/ChallengeFeedback';
 import { Results } from '../results';
 
-export const ChallengeBlock = (props) => {
+const ChallengeBlock = (props) => {
 
   if (props.finished === true) {
     return (
@@ -14,7 +14,7 @@ export const ChallengeBlock = (props) => {
             <p>Well done you got all the numbers correct.</p>
 
             <Results results={props.results} />
-            <Buttons toShow={props.toShow} onClick={props.onClick} />
+            <Buttons toShow={props.toShow} onClick={props.onClick} onClickClose={props.onClickClose} />
             <ChallengeFeedback incorrect={props.incorrect} />
           </div>
 
@@ -35,7 +35,7 @@ export const ChallengeBlock = (props) => {
           <div className="col-md-8">
             <h4>Time Challenge</h4>
             <p>Get all the numbers correct in the quickest time.</p>
-            <Buttons toShow={props.toShow} onClick={props.onClick} />
+            <Buttons toShow={props.toShow} onClick={props.onClick} onClickClose={props.onClickClose} />
             <ChallengeFeedback incorrect={props.incorrect} />
           </div>
 
@@ -47,3 +47,4 @@ export const ChallengeBlock = (props) => {
     );
   }
 }
+export default ChallengeBlock;

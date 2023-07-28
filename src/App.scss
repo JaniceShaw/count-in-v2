@@ -1,12 +1,20 @@
 @import "./scss/variables";
 .App {
-  .container {
-    background: $c-secondary-l;
-    margin: 0 auto;
+}
+.container {
+  background: $c-secondary-l;
+  margin: 0 auto;
 
-    max-width: 980px;
-    @media (max-width: $sm-width) {
-      margin: 0px;
-    }
+  max-width: 980px;
+  @media (max-width: $sm-width) {
+    margin: 0px;
   }
+}
+
+.open-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: black;
+  z-index: 10000;
 }

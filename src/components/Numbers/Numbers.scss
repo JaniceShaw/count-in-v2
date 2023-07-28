@@ -9,6 +9,7 @@
 
 .MaxControls {
   text-align: right;
+  margin-bottom: 10px;
 }
 
 .MaxControls,
@@ -27,6 +28,7 @@
     outline: none;
     width: 65px;
     height: 35px;
+    vertical-align: middle;
     // &.hide {
     //   // display: none;
     //   opacity: 0%;

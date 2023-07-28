@@ -24,9 +24,9 @@ export const MaxControls = (props) => {
 
     return (
         <div className="MaxControls">
-            <span className={style}>start</span>
+            <span className={style}>Start number</span>
             <button onClick={props.onClickMaxMinus} disabled={disabledMinus} className={style}>-</button>
-            <span className={style}>end</span> <button onClick={props.onClickMaxPlus} className={style} disabled={disabledPlus} >+</button>
+            <button onClick={props.onClickMaxPlus} className={style} disabled={disabledPlus} >+</button>
         </div>
 
     );

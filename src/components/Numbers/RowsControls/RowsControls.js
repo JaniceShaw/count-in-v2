@@ -1,20 +1,21 @@
 import React from 'react';
+import Button from '../../UI/Button/Button';
 
-export const RowsControls = (props) => {
+export const RowsControls = ({ numbersList, challengeStart, onClickMinMinus, onClickMinPlus }) => {
     let style = '';
     let disabledPlus = false;
     let disabledMinus = false;
-    const numEnd = props.numbersList.length;
+    const numEnd = numbersList.length;
 
     //check if quiz on disable buttons
-    if (props.challengeStart) {
+    if (challengeStart) {
         style = 'hide';
         disabledMinus = true;
         disabledPlus = true;
     }
 
     // removes first array item // removes first 10 numbers
-    if (props.numbersList[numEnd - 1][0] - props.numbersList[0][0] > 10) {
+    if (numbersList[numEnd - 1][0] - numbersList[0][0] > 10) {
         disabledMinus = false;
     } else {
         disabledMinus = true;
@@ -22,9 +23,9 @@ export const RowsControls = (props) => {
 
     return (
         <div className="RowsControls">
-            {/* <span className={style}>rows</span> */}
-            <button onClick={props.onClickMinMinus} disabled={disabledMinus} className={style}>-</button>
-            <button onClick={props.onClickMinPlus} disabled={disabledPlus} className={style}>+</button>
+            <span className={style}>Rows</span>
+            <Button onClick={onClickMinMinus} disabled={disabledMinus} className={style}>-</Button>
+            <Button onClick={onClickMinPlus} disabled={disabledPlus} className={style}>+</Button>
         </div>
     );
 }

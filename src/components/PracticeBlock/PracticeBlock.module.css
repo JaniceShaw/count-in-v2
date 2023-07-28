@@ -1,0 +1,10 @@
+.practice {
+  /* border: solid 1px yellow; */
+  padding: 20px;
+  border-radius: 10px;
+  /* margin-top: 20px; */
+  background-color: rgb(52, 60, 68);
+}
+h4 {
+  margin: 0;
+}

@@ -5,11 +5,11 @@ import { NumbersDisplay } from './NumbersDisplay/numbersDisplay';
 import './Numbers.scss';
 //import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-export const Numbers = (props) => {
+const Numbers = (props) => {
     //let theNum = props.theNum;
 
     return (
-        <div className='Numbers'>
+        <div className='Numbers container'>
             <RowsControls
                 onClickMinMinus={props.onClickMinMinus}
                 onClickMinPlus={props.onClickMinPlus}
@@ -32,3 +32,4 @@ export const Numbers = (props) => {
         </div>
     );
 }
+export default Numbers

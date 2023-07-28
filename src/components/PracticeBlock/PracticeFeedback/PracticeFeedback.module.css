@@ -1,5 +1,36 @@
 .practice-feedback {
-  background-color: hotpink;
-  height: 100px;
-  width: 100px;
+  /* background-color: grey; */
+  /* height: 100px;
+  width: 100px; */
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px white;
+}
+
+.practice-feedback ul {
+  margin: 0;
+  padding: 0;
+  color: white;
+  list-style: none;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.practice-feedback li {
+  display: inline-block;
+  border: solid 1px red;
+  /* padding: 5px; */
+  font-size: 16px;
+  line-height: 20px;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+ul.practice-feedback-correct li {
+  border-color: greenyellow;
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import './langSelect.scss';
 
-export const LangSelect = ( {langs, langOnClick}) => {
+export const LangSelect = ({ languageList, langOnClick }) => {
 
   return (
     <ul className='LangSelect'>
-      {langs.map((lang, index) => {
+      {languageList.map((language, index) => {
         return (
-            <li key={index} onClick={() => langOnClick(index)}>
-            {lang[0]} / {lang[2]}
+          <li key={index} onClick={() => langOnClick(index)}>
+            {language.enName} / {language.name}
           </li>
         )
       })

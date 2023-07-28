@@ -1,20 +1,22 @@
 import styles from './Menu.module.css';
 
-const Menu = ()=>{
+const Menu = ({ onDisplayChange, display = 'learn', onToggleMenu }) => {
 
-    const clickHandler = (e)=>{
-        console.log('clicked', e.target);
+    const clickHandler = (e) => {
+        onDisplayChange(e);
+        console.log('test', display);
     }
 
-    return(
+    return (
         <menu className={styles.menu}>
-           <ul>
-            <li onClick={clickHandler}>Learn</li>
-            <li>Practice</li>
-            <li>Quizz</li>
-            <li>Help</li>
-           </ul>
-        </menu>
+            <div onClick={() => { onToggleMenu() }}>Close</div>
+            <ul>
+                <li onClick={() => { clickHandler('learn') }} className={display === 'learn' ? `${styles.selected}` : undefined}>Learn</li>
+                <li onClick={() => { clickHandler('practice') }} className={display === 'practice' ? `${styles.selected}` : undefined}>Practice</li>
+                <li onClick={() => { clickHandler('challenge') }} className={display === 'challenge' ? `${styles.selected}` : undefined}>Time Challenge</li>
+                <li onClick={() => { clickHandler('help') }} className={display === 'help' ? `${styles.selected}` : undefined}>Help</li>
+            </ul>
+        </menu >
     )
 }
 

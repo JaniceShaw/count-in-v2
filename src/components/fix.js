@@ -1,0 +1,21 @@
+const languageListObj = [
+    { enName: 'Chinese', code: 'zh-CN', name: '中文', incorrect: '不正确' },
+    { enName: 'Dutch', code: 'nl-NL', name: 'Nederlands', incorrect: 'onjuist' },
+    { enName: 'English (GB)', code: 'en-GB', name: 'English', incorrect: 'incorrect' },
+    { enName: 'English (US)', code: 'en-US', name: 'English', incorrect: 'incorrect' },
+    { enName: 'French', code: 'fr-FR', name: 'français', incorrect: 'incorrect' },
+    { enName: 'French (CA)', code: 'fr-CA', name: 'français', incorrect: 'incorrect' },
+    { enName: 'German', code: 'de-DE', name: 'deutsch', incorrect: 'falsch' },
+    { enName: 'Hebrew', code: 'he-IL', name: 'עִברִית', incorrect: 'לֹא נָכוֹן' },
+    { enName: 'Italian', code: 'it-IT', name: 'italiano', incorrect: 'scorretto' },
+    { enName: 'Japanese', code: 'ja-JP', name: '日本語', incorrect: '間違った' },
+    { enName: 'Korean', code: 'ko-KR', name: '한국어', incorrect: '부정확 한' },
+    { enName: 'Polish', code: 'pl-PL', name: 'Polskie', incorrect: 'błędny' },
+    { enName: 'Portuguese', code: 'pt-PT', name: 'Português', incorrect: 'incorreta' },
+    { enName: 'Portuguese (BR)', code: 'pt-BR', name: 'Português', incorrect: 'incorreta' },
+    { enName: 'Russian', code: 'ru-RU', name: 'русский', incorrect: 'некорректный' },
+    { enName: 'Spanish', code: 'es-ES', name: 'Español', incorrect: 'incorrecto' },
+    { enName: 'Spanish (MX)', code: 'es-MX', name: 'Español', incorrect: 'incorrecto' },
+    { enName: 'Swedish', code: 'sv-SE', name: 'svenska', incorrect: 'felaktig' },
+    { enName: 'Thai', code: 'th-TH', name: 'ไทย', incorrect: 'ไม่ถูกต้อง' }
+];
