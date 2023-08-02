@@ -15,7 +15,7 @@ export const MaxControls = (props) => {
         disabledMinus = true;
     }
     //check if quiz on disable buttons
-    if (props.challengeStart) {
+    if (props.hideControls) {
         style = 'hide';
         //      let disabledMinus = true;
         //    let disabledPlus = true;

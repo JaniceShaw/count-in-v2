@@ -2,7 +2,7 @@ import React from 'react';
 import './header.scss';
 import { LangSelect } from './LangSelect/langSelect';
 
-const Header = ({ langSelected, languageList, onOpenLangsClick, showLangs, langOnClick }) => {
+const Header = ({ langSelected, languageList, onOpenLangsClick, hideControlls, showLangs, langOnClick }) => {
 
   return (
     <header className='header'>

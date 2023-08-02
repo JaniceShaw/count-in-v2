@@ -1,14 +1,14 @@
 import React from 'react';
 import Button from '../../UI/Button/Button';
 
-export const RowsControls = ({ numbersList, challengeStart, onClickMinMinus, onClickMinPlus }) => {
+export const RowsControls = ({ numbersList, hideControls, onClickMinMinus, onClickMinPlus }) => {
     let style = '';
     let disabledPlus = false;
     let disabledMinus = false;
     const numEnd = numbersList.length;
 
     //check if quiz on disable buttons
-    if (challengeStart) {
+    if (hideControls) {
         style = 'hide';
         disabledMinus = true;
         disabledPlus = true;

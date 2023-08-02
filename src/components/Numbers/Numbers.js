@@ -5,29 +5,31 @@ import { NumbersDisplay } from './NumbersDisplay/numbersDisplay';
 import './Numbers.scss';
 //import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-const Numbers = (props) => {
+const Numbers = ({ hideControls, onClickMinMinus, onClickMinPlus, onNumClick, numClass, onClickMaxMinus, onClickMaxPlus, theNum }) => {
     //let theNum = props.theNum;
 
     return (
         <div className='Numbers container'>
             <RowsControls
-                onClickMinMinus={props.onClickMinMinus}
-                onClickMinPlus={props.onClickMinPlus}
-                numbersList={props.theNum}
-                challengeStart={props.challengeStart}
+                onClickMinMinus={onClickMinMinus}
+                onClickMinPlus={onClickMinPlus}
+                numbersList={theNum}
+                // challengeStart={challengeStart}
+                hideControls={hideControls}
             />
 
             <NumbersDisplay
-                theNum={props.theNum}
-                onNumClick={props.onNumClick}
-                numClass={props.numClass}
+                theNum={theNum}
+                onNumClick={onNumClick}
+                numClass={numClass}
             />
 
             <MaxControls
-                onClickMaxMinus={props.onClickMaxMinus}
-                onClickMaxPlus={props.onClickMaxPlus}
-                numbersList={props.theNum}
-                challengeStart={props.challengeStart}
+                onClickMaxMinus={onClickMaxMinus}
+                onClickMaxPlus={onClickMaxPlus}
+                numbersList={theNum}
+                // challengeStart={challengeStart}
+                hideControls={hideControls}
             />
         </div>
     );

@@ -494,8 +494,11 @@ const App = () => {
   return (
     <div className="App">
 
-      {menuShow && <Menu display={display} onDisplayChange={handleDisplayChange} onToggleMenu={handleToggleMenu} />}
-      {!menuShow && <div className='open-menu' onClick={handleToggleMenu} >open</div>}
+
+      <Menu display={display} onDisplayChange={handleDisplayChange} onToggleMenu={handleToggleMenu} />
+      {/* <div className='open-menu' onClick={handleToggleMenu} >open</div> */}
+      {/* {menuShow && <Menu display={display} onDisplayChange={handleDisplayChange} onToggleMenu={handleToggleMenu} />}
+      {!menuShow && <div className='open-menu' onClick={handleToggleMenu} >open</div>} */}
 
       <Header
         langSelected={langSelected}
@@ -503,6 +506,7 @@ const App = () => {
         //langShowClick={openLangsHandler}
         onOpenLangsClick={openLangsHandler}
         showLangs={showLangs}
+        hideControls={challenge || practice}
         langOnClick={langClickedHandler}
       />
 
@@ -515,7 +519,7 @@ const App = () => {
           onClickMinPlus={minPlusClickedHandler}
           onClickMaxMinus={maxMinusClickedHandler}
           onClickMaxPlus={maxPlusClickedHandler}
-          challengeStart={challenge}
+          hideControls={challenge || practice}
         />
       }
 
