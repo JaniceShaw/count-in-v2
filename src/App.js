@@ -63,7 +63,7 @@ const App = () => {
 
 
   //set up states -- not all need to be state 
-  const [menuShow, setMenuShow] = useState(false); //to open and close the menu
+  // const [menuShow, setMenuShow] = useState(false); //to open and close the menu
   const [showLangs, setShowLangs] = useState(false); // hide lang list selection
   // do i need both of these??
   const [langSelected, setLangSelected] = useState(6); // The selected language (German default)
@@ -153,10 +153,10 @@ const App = () => {
     speech.cancel()
   }
 
-  const handleToggleMenu = () => {
-    console.log('close/open');
-    setMenuShow((prevState) => !prevState);
-  }
+  // const handleToggleMenu = (e) => {
+  //   console.log('close/open', e);
+  //   setMenuShow((prevState) => !prevState);
+  // }
 
   const handleDisplayChange = (toDisplay) => {
 
@@ -165,16 +165,16 @@ const App = () => {
     if (toDisplay === 'practice') {
       // setPractice(true);
       setChallenge(false);
-      setMenuShow((prevState) => !prevState);
+      // setMenuShow((prevState) => !prevState);
 
     } else if (toDisplay === 'challenge') {
       setPractice(false);
       //setChallenge(true);
-      setMenuShow((prevState) => !prevState);
+      // setMenuShow((prevState) => !prevState);
     } else {
       setPractice(false);
       setChallenge(false);
-      if (menuShow) { setMenuShow(false); }
+      // if (menuShow) { setMenuShow(false); }
 
     }
 
@@ -197,7 +197,6 @@ const App = () => {
     runSpeak(languageList[newLangSelected].name, newLang);
     setLang(newLang);
     setLangSelected(newLangSelected);
-    setShowLangs(false)
   }
 
   // Numbers Changed //
@@ -495,7 +494,7 @@ const App = () => {
     <div className="App">
 
 
-      <Menu display={display} onDisplayChange={handleDisplayChange} onToggleMenu={handleToggleMenu} />
+      <Menu display={display} onDisplayChange={handleDisplayChange} />
       {/* <div className='open-menu' onClick={handleToggleMenu} >open</div> */}
       {/* {menuShow && <Menu display={display} onDisplayChange={handleDisplayChange} onToggleMenu={handleToggleMenu} />}
       {!menuShow && <div className='open-menu' onClick={handleToggleMenu} >open</div>} */}

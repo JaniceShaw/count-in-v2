@@ -1,5 +1,8 @@
 @import "./scss/variables";
 .App {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
 }
 .container {
   background: $c-secondary-l;
@@ -9,12 +12,4 @@
   @media (max-width: $sm-width) {
     margin: 0px;
   }
-}
-
-.open-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: black;
-  z-index: 10000;
 }
