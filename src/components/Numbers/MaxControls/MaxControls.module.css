@@ -1,0 +1,30 @@
+.MaxControls {
+  --control-color: hotpink;
+  --control-color-disabled: rgba(255, 105, 180, 0.459);
+  --control-color-disabled-b: rgba(255, 105, 180, 0.277);
+  --control-color-disabled-t: rgba(255, 255, 255, 0.48);
+  --control-color-hover: rgb(246, 134, 190);
+
+  color: var(--control-color);
+  font-size: 1.1rem;
+}
+.control {
+  font-size: 2rem;
+  background-color: var(--control-color);
+  border-color: var(--control-color);
+  width: 70px;
+  padding: 0 0 5px 0;
+  line-height: 2rem;
+}
+
+.control:hover,
+.control:active {
+  background-color: var(--control-color-hover);
+  border-color: var(--control-color);
+}
+
+.control:disabled {
+  background-color: var(--control-color-disabled);
+  border-color: var(--control-color-disabled-b);
+  color: var(--control-color-disabled-t);
+}

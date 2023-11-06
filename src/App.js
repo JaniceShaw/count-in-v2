@@ -8,6 +8,7 @@ import Numbers from './components/Numbers/Numbers';
 import PracticeBlock from './components/PracticeBlock/PracticeBlock';
 import ChallengeBlock from './components/ChallengeBlock/ChallengeBlock';
 import Help from './components/Help/Help';
+// import Timer from './components/Timer/Timer';
 
 //import Learn from './components/Numbers/Learn/Learn';
 
@@ -161,6 +162,7 @@ const App = () => {
   const handleDisplayChange = (toDisplay) => {
 
     setDisplay(toDisplay);
+    console.log(toDisplay)
 
     if (toDisplay === 'practice') {
       // setPractice(true);
@@ -197,6 +199,7 @@ const App = () => {
     runSpeak(languageList[newLangSelected].name, newLang);
     setLang(newLang);
     setLangSelected(newLangSelected);
+    setShowLangs(false);
   }
 
   // Numbers Changed //
@@ -305,7 +308,7 @@ const App = () => {
 
     // check if challenge mode is on //
     if (challenge) {
-      console.log("started chalange!");
+      console.log("started chalange! clicked a number");
 
       let theNum = [...numbersList];
       let theNewNum = [];
@@ -443,7 +446,7 @@ const App = () => {
   }
 
   //start challenge button
-  const handleQuizButtonClick = (e) => {
+  const handleChallengeButtonClick = (e) => {
     let newRand = numbersList[Math.floor((Math.random() * numbersList.length))][0];
     //resets numbers to remove correct class
     let theNewNum = [];
@@ -453,7 +456,7 @@ const App = () => {
 
     let nStart = numbersList[0][0];
     let nEnd = numbersList[numbersList.length - 1][0];
-    console.log(nStart, nEnd);
+    // console.log(nStart, nEnd);
 
     for (i = nStart; i <= nEnd; i++) {
       theNewNum.push([i, 'num']);
@@ -495,9 +498,6 @@ const App = () => {
 
 
       <Menu display={display} onDisplayChange={handleDisplayChange} />
-      {/* <div className='open-menu' onClick={handleToggleMenu} >open</div> */}
-      {/* {menuShow && <Menu display={display} onDisplayChange={handleDisplayChange} onToggleMenu={handleToggleMenu} />}
-      {!menuShow && <div className='open-menu' onClick={handleToggleMenu} >open</div>} */}
 
       <Header
         langSelected={langSelected}
@@ -533,9 +533,9 @@ const App = () => {
 
       {display === 'challenge' && <ChallengeBlock
         toShow={challenge}
-        onClick={handleQuizButtonClick}
+        onClick={handleChallengeButtonClick}
         incorrect={incorrectChallenge}
-        timer={theTime}
+        // timer={theTime}
         finished={finished}
         results={results}
         onClickClose={handleDisplayChange}

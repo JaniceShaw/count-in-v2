@@ -3,6 +3,8 @@ import Button from '../UI/Button/Button';
 import styles from './buttons.module.css';
 
 export const Buttons = ({ toShow, onClick, onClickClose }) => {
+
+  console.log('buttons toshow = ', toShow)
   if (toShow === true) {
     return (
       <div>

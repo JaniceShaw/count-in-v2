@@ -5,6 +5,8 @@ import { PracticeFeedback } from './PracticeFeedback/PracticeFeedback';
 import styles from './PracticeBlock.module.css';
 
 const PracticeBlock = ({ toShow, onClick, onClickClose, correct, incorrect }) => {
+
+  console.log('practblock toshow =', toShow)
   return (
     <div className={styles.practice + " container"}>
       <h4>Practice</h4>

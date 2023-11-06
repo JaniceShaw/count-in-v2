@@ -1,0 +1,32 @@
+.RowsControls {
+  --control-color: orange;
+  --control-color-disabled: rgba(255, 166, 0, 0.237);
+  --control-color-disabled-b: rgba(255, 166, 0, 0.503);
+  --control-color-disabled-t: rgba(255, 255, 255, 0.48);
+  --control-color-hover: rgb(253, 187, 64);
+
+  text-align: right;
+  font-size: 1.1rem;
+  color: var(--control-color);
+}
+
+.control {
+  font-size: 2rem;
+  background-color: var(--control-color);
+  border-color: var(--control-color);
+  width: 70px;
+  padding: 0 0 5px 0;
+  line-height: 2rem;
+}
+
+.control:hover,
+.control:active {
+  background-color: var(--control-color-hover);
+  border-color: var(--control-color);
+}
+
+.control:disabled {
+  background-color: var(--control-color-disabled);
+  border-color: var(--control-color-disabled-b);
+  color: var(--control-color-disabled-t);
+}

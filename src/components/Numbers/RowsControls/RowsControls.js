@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../../UI/Button/Button';
+import styles from './RowContols.module.css'
 
 export const RowsControls = ({ numbersList, hideControls, onClickMinMinus, onClickMinPlus }) => {
     let style = '';
@@ -22,10 +23,10 @@ export const RowsControls = ({ numbersList, hideControls, onClickMinMinus, onCli
     }
 
     return (
-        <div className="RowsControls">
+        <div className={styles.RowsControls}>
             <span className={style}>Rows</span>
-            <Button onClick={onClickMinMinus} disabled={disabledMinus} className={style}>-</Button>
-            <Button onClick={onClickMinPlus} disabled={disabledPlus} className={style}>+</Button>
+            <Button onClick={onClickMinMinus} disabled={disabledMinus} className={`${styles.control} ${style}`}>-</Button>
+            <Button onClick={onClickMinPlus} disabled={disabledPlus} className={`${styles.control} ${style}`}>+</Button>
         </div>
     );
 }

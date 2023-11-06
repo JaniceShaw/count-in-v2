@@ -1,41 +1,24 @@
-:root {
-  /* --bar-width: 55px;
-  --bar-height: 7px;
-  --hamburger-gap: 7px;
-  --foreground: black;
-  --background: white;
-  --hamburger-margin: 15px;
-  --animation-time: 200ms ease-in-out;
-  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2); */
-  --hamburger-color: black;
-  --hamburger-color-open: white;
-}
-
 .menu-button {
+  --hamburger-color: rgb(35, 74, 77);
+  --hamburger-color-open: white;
+
   position: absolute;
   top: 0;
   right: 0;
-  /* background-color: rgba(255, 105, 180, 0.142); */
   background-color: transparent;
-  /* border-radius: 50%; */
   border: none;
   z-index: 5000;
 }
 
 .menu-button:hover {
-  /* background-color: rgba(255, 105, 180, 0.501); */
   cursor: pointer;
 }
 
 .menu-button[aria-expanded="true"] :is(.top, .bottom) {
-  y: 45 !important;
+  y: 45;
   fill: var(--hamburger-color-open);
 }
 
-/* .menu-button[aria-expanded="true"] svg .line {
-  top: 45;
-  background-color: orange;
-} */
 .menu-button[aria-expanded="true"] .top {
   rotate: 45deg;
 }
@@ -47,9 +30,6 @@
 .menu-button[aria-expanded="true"] .mid {
   opacity: 0;
 }
-
-/* .menu-button[aria-expanded="true"] .top {
-} */
 
 .menu-button .line {
   transition: y 300ms ease-in 300ms, rotate 300ms ease-in, opacity 0ms 300ms,
@@ -66,67 +46,30 @@
   fill: var(--hamburger-color);
 }
 
-/* ///
-//
-//
-//
-//
-//
-/
-/
-/
-/
-/ */
-
 .sidebar {
   position: absolute;
   top: 0;
   right: 0;
   translate: 300px;
-  /* transition: translate var(--animation-time); */
   transition: translate 600ms;
   background-color: rgba(21, 96, 99, 0.963);
-
   padding-top: 80px;
   width: 300px;
   height: 100vh;
   z-index: 1000;
+  font-size: 1.3rem;
 }
 
 .sidebar.open {
-  /* background-color: red;  */
   translate: 0;
   height: 100vh;
-  min-height: 100vh;
 }
-
-/* .hamburger-menu.hamburger-menu:has(input:checked) + .sidebar {
-  translate: 0;
-} */
-
-/* .menu {
-  position: absolute;
-  height: 100vh;
-  width: 300px;
-  top: 0;
-  right: 0;
-  background-color: rgba(21, 97, 99, 0.909);
-  z-index: 1000;
-  padding: 0;
-  margin: 0;
-
-} */
-
-/* .menu.show {
-  display: block;
-} */
 
 .sidebar ul {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
-  height: 100vh;
 }
 
 .sidebar li {

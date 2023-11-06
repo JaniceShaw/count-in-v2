@@ -60,7 +60,6 @@ const Menu = ({ onDisplayChange, display = 'learn' }) => {
 
             < aside className={`${styles.sidebar} ${expand ? styles.open : ''}`} >
                 <nav>
-                    {/* <div onClick={() => { onToggleMenu() }}>Close</div> */}
                     <ul>
                         <li onClick={() => { clickHandler('learn') }} className={display === 'learn' ? `${styles.selected}` : undefined}>Learn</li>
                         <li onClick={() => { clickHandler('practice') }} className={display === 'practice' ? `${styles.selected}` : undefined}>Practice</li>
